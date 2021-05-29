@@ -1,0 +1,94 @@
+object AboutBox: TAboutBox
+  Left = 910
+  Height = 326
+  Top = 703
+  Width = 361
+  BorderStyle = bsDialog
+  Caption = 'About'
+  ClientHeight = 326
+  ClientWidth = 361
+  DesignTimePPI = 168
+  Font.Color = clWindowText
+  Font.Height = -24
+  Font.Name = 'Tahoma'
+  Position = poScreenCenter
+  LCLVersion = '1.8.0.6'
+  object Panel1: TPanel
+    Left = 20
+    Height = 200
+    Top = 20
+    Width = 320
+    BevelInner = bvRaised
+    BevelOuter = bvLowered
+    ClientHeight = 200
+    ClientWidth = 320
+    TabOrder = 0
+    object ProductName: TLabel
+      Left = 20
+      Height = 29
+      Top = 20
+      Width = 117
+      Alignment = taCenter
+      Caption = 'Chameleon'
+      Font.CharSet = GREEK_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      ParentColor = False
+      ParentFont = False
+    end
+    object Version: TLabel
+      Left = 20
+      Height = 29
+      Top = 60
+      Width = 139
+      Alignment = taCenter
+      Caption = 'Version 0.0.2'
+      Font.CharSet = GREEK_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      ParentColor = False
+      ParentFont = False
+    end
+    object Copyright: TLabel
+      Left = 20
+      Height = 29
+      Top = 100
+      Width = 231
+      Alignment = taCenter
+      Caption = '(C) Nikolaos Georgiou'
+      Font.CharSet = GREEK_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      ParentColor = False
+      ParentFont = False
+    end
+    object Comments: TLabel
+      Left = 20
+      Height = 29
+      Top = 140
+      Width = 128
+      Alignment = taCenter
+      Caption = 'MIT License'
+      Font.CharSet = GREEK_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      ParentColor = False
+      ParentFont = False
+      WordWrap = True
+    end
+  end
+  object OKButton: TButton
+    Left = 110
+    Height = 65
+    Top = 240
+    Width = 140
+    Caption = 'OK'
+    Default = True
+    ModalResult = 1
+    TabOrder = 1
+  end
+end

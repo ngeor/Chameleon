@@ -1,0 +1,228 @@
+object MainForm: TMainForm
+  Left = 645
+  Height = 522
+  Top = 560
+  Width = 750
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Chameleon'
+  ClientHeight = 522
+  ClientWidth = 750
+  Color = clBtnFace
+  DesignTimePPI = 168
+  Font.Color = clWindowText
+  Font.Height = -24
+  Font.Name = 'Tahoma'
+  LCLVersion = '1.8.0.6'
+  object lblDelayTime: TLabel
+    Left = 36
+    Height = 29
+    Top = 20
+    Width = 294
+    Caption = 'Time until restoring control:'
+    ParentColor = False
+  end
+  object Label1: TLabel
+    Left = 478
+    Height = 29
+    Top = 20
+    Width = 55
+    Caption = 'msec'
+    ParentColor = False
+  end
+  object DelayTime: TSpinEdit
+    Left = 360
+    Height = 37
+    Top = 20
+    Width = 111
+    MaxValue = 0
+    TabOrder = 0
+    Value = 3000
+  end
+  object PageControl1: TPageControl
+    Left = 36
+    Height = 396
+    Top = 100
+    Width = 692
+    ActivePage = InformationSheet
+    TabIndex = 0
+    TabOrder = 1
+    object InformationSheet: TTabSheet
+      Caption = 'Get information'
+      ClientHeight = 354
+      ClientWidth = 684
+      object lblWndValue: TLabel
+        Left = 56
+        Height = 29
+        Top = 160
+        Width = 134
+        Caption = 'HWND value'
+        Enabled = False
+        ParentColor = False
+      end
+      object Information: TButton
+        Left = 36
+        Height = 72
+        Top = 240
+        Width = 504
+        Caption = 'Get information'
+        OnClick = InformationClick
+        TabOrder = 3
+      end
+      object WndValue: TEdit
+        Left = 223
+        Height = 37
+        Top = 160
+        Width = 121
+        Enabled = False
+        TabOrder = 2
+      end
+      object optAutomatic: TRadioButton
+        Left = 24
+        Height = 33
+        Top = 20
+        Width = 185
+        Caption = 'Select window'
+        Checked = True
+        OnClick = optAutomaticClick
+        TabOrder = 0
+        TabStop = True
+      end
+      object optManual: TRadioButton
+        Left = 24
+        Height = 33
+        Top = 100
+        Width = 320
+        Caption = 'Type in the window handle'
+        OnClick = optManualClick
+        TabOrder = 1
+      end
+    end
+    object DelphiFormSheet: TTabSheet
+      Caption = 'Create Delphi form'
+      ClientHeight = 354
+      ClientWidth = 684
+      object Label3: TLabel
+        Left = 36
+        Height = 29
+        Top = 20
+        Width = 148
+        Caption = 'Unit file name'
+        ParentColor = False
+      end
+      object Label4: TLabel
+        Left = 36
+        Height = 29
+        Top = 140
+        Width = 122
+        Caption = 'Form name'
+        ParentColor = False
+      end
+      object PasFileName: TEdit
+        Left = 36
+        Height = 37
+        Top = 60
+        Width = 324
+        OnChange = PasEditChange
+        TabOrder = 0
+      end
+      object BrowsePas: TButton
+        Left = 360
+        Height = 37
+        Top = 60
+        Width = 144
+        Caption = 'Browse...'
+        OnClick = BrowsePasClick
+        TabOrder = 1
+      end
+      object FormName: TEdit
+        Left = 36
+        Height = 37
+        Top = 180
+        Width = 468
+        OnChange = PasEditChange
+        TabOrder = 2
+      end
+      object SavePas: TButton
+        Left = 36
+        Height = 72
+        Top = 240
+        Width = 468
+        Caption = 'Select window and save it'
+        Enabled = False
+        OnClick = SavePasClick
+        TabOrder = 3
+      end
+    end
+    object RCSheet: TTabSheet
+      Caption = 'Create resource script'
+      ClientHeight = 354
+      ClientWidth = 684
+      object Label2: TLabel
+        Left = 36
+        Height = 29
+        Top = 20
+        Width = 135
+        Caption = 'RC file name'
+        ParentColor = False
+      end
+      object RCFileName: TEdit
+        Left = 36
+        Height = 37
+        Top = 60
+        Width = 293
+        OnChange = RCFileNameChange
+        TabOrder = 0
+      end
+      object BrowseRC: TButton
+        Left = 324
+        Height = 37
+        Top = 60
+        Width = 144
+        Caption = 'Browse...'
+        OnClick = BrowseRCClick
+        TabOrder = 1
+      end
+      object SaveRC: TButton
+        Left = 36
+        Height = 72
+        Top = 180
+        Width = 432
+        Caption = 'Select window and save it'
+        Enabled = False
+        OnClick = SaveRCClick
+        TabOrder = 2
+      end
+    end
+  end
+  object BitBtn1: TBitBtn
+    Left = 565
+    Height = 64
+    Top = 20
+    Width = 163
+    Caption = 'About...'
+    Glyph.Data = {
+      76010000424D7601000000000000760000002800000020000000100000000100
+      04000000000000010000120B0000120B00001000000000000000000000000000
+      800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+      FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+      333333333337FF3333333333330003333333333333777F333333333333080333
+      3333333F33777FF33F3333B33B000B33B3333373F777773F7333333BBB0B0BBB
+      33333337737F7F77F333333BBB0F0BBB33333337337373F73F3333BBB0F7F0BB
+      B333337F3737F73F7F3333BB0FB7BF0BB3333F737F37F37F73FFBBBB0BF7FB0B
+      BBB3773F7F37337F377333BB0FBFBF0BB333337F73F333737F3333BBB0FBF0BB
+      B3333373F73FF7337333333BBB000BBB33333337FF777337F333333BBBBBBBBB
+      3333333773FF3F773F3333B33BBBBB33B33333733773773373333333333B3333
+      333333333337F33333333333333B333333333333333733333333
+    }
+    ModalResult = 3
+    NumGlyphs = 2
+    OnClick = BitBtn1Click
+    TabOrder = 2
+  end
+  object SaveDialog1: TSaveDialog
+    Options = [ofOverwritePrompt, ofHideReadOnly]
+    left = 640
+    top = 420
+  end
+end
