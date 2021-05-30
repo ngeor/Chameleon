@@ -1,29 +1,28 @@
 object Results: TResults
   Left = 197
-  Height = 395
+  Height = 226
   Top = 144
-  Width = 390
+  Width = 223
   Caption = 'Chameleon Information'
-  ClientHeight = 395
-  ClientWidth = 390
+  ClientHeight = 226
+  ClientWidth = 223
   Color = clBtnFace
-  DesignTimePPI = 168
   Font.Color = clWindowText
-  Font.Height = -24
+  Font.Height = -14
   Font.Name = 'Tahoma'
-  LCLVersion = '1.8.0.6'
+  LCLVersion = '2.0.6.0'
   object TreeView1: TTreeView
     Left = 0
-    Height = 395
+    Height = 226
     Top = 0
-    Width = 390
+    Width = 223
     Align = alClient
-    Indent = 19
+    Indent = 11
     TabOrder = 0
   end
   object popListData: TPopupMenu
-    left = 101
-    top = 15
+    left = 58
+    top = 9
     object Savelistdata1: TMenuItem
       Caption = 'Save list data...'
       OnClick = Savelistdata1Click

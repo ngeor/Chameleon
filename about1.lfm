@@ -1,91 +1,70 @@
 object AboutBox: TAboutBox
   Left = 910
-  Height = 326
+  Height = 186
   Top = 703
-  Width = 361
+  Width = 206
   BorderStyle = bsDialog
   Caption = 'About'
-  ClientHeight = 326
-  ClientWidth = 361
-  DesignTimePPI = 168
+  ClientHeight = 186
+  ClientWidth = 206
   Font.Color = clWindowText
-  Font.Height = -24
+  Font.Height = -14
   Font.Name = 'Tahoma'
   Position = poScreenCenter
-  LCLVersion = '1.8.0.6'
+  LCLVersion = '2.0.6.0'
   object Panel1: TPanel
-    Left = 20
-    Height = 200
-    Top = 20
-    Width = 320
+    Left = 11
+    Height = 114
+    Top = 11
+    Width = 183
     BevelInner = bvRaised
     BevelOuter = bvLowered
-    ClientHeight = 200
-    ClientWidth = 320
+    ClientHeight = 114
+    ClientWidth = 183
     TabOrder = 0
     object ProductName: TLabel
-      Left = 20
-      Height = 29
-      Top = 20
-      Width = 117
+      Left = 11
+      Height = 17
+      Top = 11
+      Width = 68
       Alignment = taCenter
       Caption = 'Chameleon'
-      Font.CharSet = GREEK_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -24
-      Font.Name = 'Tahoma'
       ParentColor = False
-      ParentFont = False
     end
     object Version: TLabel
-      Left = 20
-      Height = 29
-      Top = 60
-      Width = 139
+      Left = 11
+      Height = 17
+      Top = 34
+      Width = 80
       Alignment = taCenter
       Caption = 'Version 0.0.2'
-      Font.CharSet = GREEK_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -24
-      Font.Name = 'Tahoma'
       ParentColor = False
-      ParentFont = False
     end
     object Copyright: TLabel
-      Left = 20
-      Height = 29
-      Top = 100
-      Width = 231
+      Left = 11
+      Height = 17
+      Top = 57
+      Width = 131
       Alignment = taCenter
       Caption = '(C) Nikolaos Georgiou'
-      Font.CharSet = GREEK_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -24
-      Font.Name = 'Tahoma'
       ParentColor = False
-      ParentFont = False
     end
     object Comments: TLabel
-      Left = 20
-      Height = 29
-      Top = 140
-      Width = 128
+      Left = 11
+      Height = 17
+      Top = 80
+      Width = 70
       Alignment = taCenter
       Caption = 'MIT License'
-      Font.CharSet = GREEK_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -24
-      Font.Name = 'Tahoma'
       ParentColor = False
-      ParentFont = False
       WordWrap = True
     end
   end
   object OKButton: TButton
-    Left = 110
-    Height = 65
-    Top = 240
-    Width = 140
+    Left = 63
+    Height = 37
+    Top = 137
+    Width = 80
     Caption = 'OK'
     Default = True
     ModalResult = 1

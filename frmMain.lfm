@@ -1,87 +1,89 @@
 object MainForm: TMainForm
   Left = 645
-  Height = 522
+  Height = 298
   Top = 560
-  Width = 750
+  Width = 429
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Chameleon'
-  ClientHeight = 522
-  ClientWidth = 750
-  Color = clBtnFace
-  DesignTimePPI = 168
+  ClientHeight = 298
+  ClientWidth = 429
   Font.Color = clWindowText
-  Font.Height = -24
+  Font.Height = -14
   Font.Name = 'Tahoma'
-  LCLVersion = '1.8.0.6'
+  LCLVersion = '2.0.6.0'
   object lblDelayTime: TLabel
-    Left = 36
-    Height = 29
-    Top = 20
-    Width = 294
+    Left = 21
+    Height = 17
+    Top = 11
+    Width = 168
     Caption = 'Time until restoring control:'
     ParentColor = False
   end
   object Label1: TLabel
-    Left = 478
-    Height = 29
-    Top = 20
-    Width = 55
+    Left = 273
+    Height = 17
+    Top = 11
+    Width = 32
     Caption = 'msec'
     ParentColor = False
   end
   object DelayTime: TSpinEdit
-    Left = 360
-    Height = 37
-    Top = 20
-    Width = 111
+    Left = 206
+    Height = 25
+    Top = 11
+    Width = 63
     MaxValue = 0
     TabOrder = 0
     Value = 3000
   end
   object PageControl1: TPageControl
-    Left = 36
-    Height = 396
-    Top = 100
-    Width = 692
+    Left = 21
+    Height = 226
+    Top = 57
+    Width = 395
     ActivePage = InformationSheet
     TabIndex = 0
     TabOrder = 1
     object InformationSheet: TTabSheet
       Caption = 'Get information'
-      ClientHeight = 354
-      ClientWidth = 684
+      ClientHeight = 196
+      ClientWidth = 387
+      Font.Color = clWindowText
+      Font.Height = -14
+      Font.Name = 'Tahoma'
+      ParentFont = False
       object lblWndValue: TLabel
-        Left = 56
-        Height = 29
-        Top = 160
-        Width = 134
+        Left = 32
+        Height = 17
+        Top = 91
+        Width = 78
         Caption = 'HWND value'
         Enabled = False
         ParentColor = False
       end
       object Information: TButton
-        Left = 36
-        Height = 72
-        Top = 240
-        Width = 504
+        Left = 21
+        Height = 41
+        Top = 137
+        Width = 288
         Caption = 'Get information'
         OnClick = InformationClick
         TabOrder = 3
       end
       object WndValue: TEdit
-        Left = 223
-        Height = 37
-        Top = 160
-        Width = 121
+        Left = 127
+        Height = 25
+        Top = 91
+        Width = 69
         Enabled = False
         TabOrder = 2
       end
       object optAutomatic: TRadioButton
-        Left = 24
-        Height = 33
-        Top = 20
-        Width = 185
+        Left = 14
+        Height = 21
+        Top = 11
+        Width = 106
         Caption = 'Select window'
         Checked = True
         OnClick = optAutomaticClick
@@ -89,10 +91,10 @@ object MainForm: TMainForm
         TabStop = True
       end
       object optManual: TRadioButton
-        Left = 24
-        Height = 33
-        Top = 100
-        Width = 320
+        Left = 14
+        Height = 21
+        Top = 57
+        Width = 183
         Caption = 'Type in the window handle'
         OnClick = optManualClick
         TabOrder = 1
@@ -100,54 +102,58 @@ object MainForm: TMainForm
     end
     object DelphiFormSheet: TTabSheet
       Caption = 'Create Delphi form'
-      ClientHeight = 354
-      ClientWidth = 684
+      ClientHeight = 196
+      ClientWidth = 387
+      Font.Color = clWindowText
+      Font.Height = -14
+      Font.Name = 'Tahoma'
+      ParentFont = False
       object Label3: TLabel
-        Left = 36
-        Height = 29
-        Top = 20
-        Width = 148
+        Left = 21
+        Height = 17
+        Top = 11
+        Width = 81
         Caption = 'Unit file name'
         ParentColor = False
       end
       object Label4: TLabel
-        Left = 36
-        Height = 29
-        Top = 140
-        Width = 122
+        Left = 21
+        Height = 17
+        Top = 80
+        Width = 70
         Caption = 'Form name'
         ParentColor = False
       end
       object PasFileName: TEdit
-        Left = 36
-        Height = 37
-        Top = 60
-        Width = 324
+        Left = 21
+        Height = 25
+        Top = 34
+        Width = 185
         OnChange = PasEditChange
         TabOrder = 0
       end
       object BrowsePas: TButton
-        Left = 360
-        Height = 37
-        Top = 60
-        Width = 144
+        Left = 206
+        Height = 21
+        Top = 34
+        Width = 82
         Caption = 'Browse...'
         OnClick = BrowsePasClick
         TabOrder = 1
       end
       object FormName: TEdit
-        Left = 36
-        Height = 37
-        Top = 180
-        Width = 468
+        Left = 21
+        Height = 25
+        Top = 103
+        Width = 267
         OnChange = PasEditChange
         TabOrder = 2
       end
       object SavePas: TButton
-        Left = 36
-        Height = 72
-        Top = 240
-        Width = 468
+        Left = 21
+        Height = 41
+        Top = 137
+        Width = 267
         Caption = 'Select window and save it'
         Enabled = False
         OnClick = SavePasClick
@@ -156,38 +162,42 @@ object MainForm: TMainForm
     end
     object RCSheet: TTabSheet
       Caption = 'Create resource script'
-      ClientHeight = 354
-      ClientWidth = 684
+      ClientHeight = 196
+      ClientWidth = 387
+      Font.Color = clWindowText
+      Font.Height = -14
+      Font.Name = 'Tahoma'
+      ParentFont = False
       object Label2: TLabel
-        Left = 36
-        Height = 29
-        Top = 20
-        Width = 135
+        Left = 21
+        Height = 17
+        Top = 11
+        Width = 75
         Caption = 'RC file name'
         ParentColor = False
       end
       object RCFileName: TEdit
-        Left = 36
-        Height = 37
-        Top = 60
-        Width = 293
+        Left = 21
+        Height = 25
+        Top = 34
+        Width = 167
         OnChange = RCFileNameChange
         TabOrder = 0
       end
       object BrowseRC: TButton
-        Left = 324
-        Height = 37
-        Top = 60
-        Width = 144
+        Left = 185
+        Height = 21
+        Top = 34
+        Width = 82
         Caption = 'Browse...'
         OnClick = BrowseRCClick
         TabOrder = 1
       end
       object SaveRC: TButton
-        Left = 36
-        Height = 72
-        Top = 180
-        Width = 432
+        Left = 21
+        Height = 41
+        Top = 103
+        Width = 247
         Caption = 'Select window and save it'
         Enabled = False
         OnClick = SaveRCClick
@@ -196,10 +206,10 @@ object MainForm: TMainForm
     end
   end
   object BitBtn1: TBitBtn
-    Left = 565
-    Height = 64
-    Top = 20
-    Width = 163
+    Left = 323
+    Height = 37
+    Top = 11
+    Width = 93
     Caption = 'About...'
     Glyph.Data = {
       76010000424D7601000000000000760000002800000020000000100000000100
@@ -222,7 +232,7 @@ object MainForm: TMainForm
   end
   object SaveDialog1: TSaveDialog
     Options = [ofOverwritePrompt, ofHideReadOnly]
-    left = 640
-    top = 420
+    left = 366
+    top = 240
   end
 end
