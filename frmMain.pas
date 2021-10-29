@@ -36,7 +36,7 @@ type
     RCFileName: TEdit;
     BrowseRC: TButton;
     SaveRC: TButton;
-    BitBtn1: TBitBtn;
+    btnAbout: TBitBtn;
     procedure InformationClick(Sender: TObject);
     procedure BrowsePasClick(Sender: TObject);
     procedure BrowseRCClick(Sender: TObject);
@@ -45,7 +45,7 @@ type
     procedure optManualClick(Sender: TObject);
     procedure optAutomaticClick(Sender: TObject);
     procedure RCFileNameChange(Sender: TObject);
-    procedure BitBtn1Click(Sender: TObject);
+    procedure btnAboutClick(Sender: TObject);
     procedure SaveRCClick(Sender: TObject);
   private
     procedure GenerateDfmFile(const filename, frmname: string;
@@ -292,9 +292,6 @@ begin
   EnableSavePas;
 end;
 
-
-
-
 procedure TMainForm.EnableWndInput;
 begin
   WndValue.Enabled := optManual.Checked;
@@ -311,13 +308,12 @@ begin
   EnableWndInput;
 end;
 
-
 procedure TMainForm.RCFileNameChange(Sender: TObject);
 begin
   SaveRC.Enabled := False;
 end;
 
-procedure TMainForm.BitBtn1Click(Sender: TObject);
+procedure TMainForm.btnAboutClick(Sender: TObject);
 begin
   AboutBox.ShowModal;
 end;

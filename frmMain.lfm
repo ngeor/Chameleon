@@ -205,7 +205,7 @@ object MainForm: TMainForm
       end
     end
   end
-  object BitBtn1: TBitBtn
+  object btnAbout: TBitBtn
     Left = 323
     Height = 37
     Top = 11
@@ -227,7 +227,7 @@ object MainForm: TMainForm
     }
     ModalResult = 3
     NumGlyphs = 2
-    OnClick = BitBtn1Click
+    OnClick = btnAboutClick
     TabOrder = 2
   end
   object SaveDialog1: TSaveDialog
