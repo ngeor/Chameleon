@@ -132,7 +132,8 @@ begin
         SendMessage(wnd, CB_GETLBTEXT, i - 1, longint(@itemtext));
         node2 := AddChild(node1, 'Item #' + IntToStr(i));
         AddChild(node2, 'Text = ' + itemtext);
-        AddChild(node2, 'Data = ' + IntToStr(SendMessage(wnd, CB_GETITEMDATA, i - 1, 0)));
+        AddChild(node2, 'Data = ' +
+          IntToStr(SendMessage(wnd, CB_GETITEMDATA, i - 1, 0)));
       end;
     end;
     if childlist.Count > 0 then
