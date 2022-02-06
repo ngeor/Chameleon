@@ -67,8 +67,10 @@ const
 function BitTest(Value, Mask: integer): boolean;
 function GetWndText(wnd: HWND): string;
 function EnumChildrenProc(wnd: HWND; lp: LPARAM): BOOL; stdcall;
-procedure WriteBitmapData(dfm1: TDfmWriter; bmp: HBITMAP; BelongsToPicture: boolean; const Name: string);
-procedure WriteIconData(dfm1: TDfmWriter; icon: HICON; BelongsToPicture: boolean; const Name: string);
+procedure WriteBitmapData(dfm1: TDfmWriter; bmp: HBITMAP;
+  BelongsToPicture: boolean; const Name: string);
+procedure WriteIconData(dfm1: TDfmWriter; icon: HICON; BelongsToPicture: boolean;
+  const Name: string);
 
 implementation
 
@@ -300,7 +302,8 @@ procedure TDfmBuilder.HandleTreeView(wnd: HWND; style: integer);
 begin
 end;
 
-procedure WriteBitmapData(dfm1: TDfmWriter; bmp: HBITMAP; BelongsToPicture: boolean; const Name: string);
+procedure WriteBitmapData(dfm1: TDfmWriter; bmp: HBITMAP;
+  BelongsToPicture: boolean; const Name: string);
 var
   b: TBitmap;
   Memory: TTextWriter;
@@ -334,7 +337,8 @@ begin
   end;
 end;
 
-procedure WriteIconData(dfm1: TDfmWriter; icon: HICON; BelongsToPicture: boolean; const Name: string);
+procedure WriteIconData(dfm1: TDfmWriter; icon: HICON; BelongsToPicture: boolean;
+  const Name: string);
 var
   i: TIcon;
   k: TTextWriter;
