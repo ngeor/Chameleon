@@ -48,7 +48,8 @@ type
     procedure btnAboutClick(Sender: TObject);
     procedure SaveRCClick(Sender: TObject);
   private
-    procedure GenerateDfmFile(const filename, frmname: string; wnd: HWND; PasList: TStrings);
+    procedure GenerateDfmFile(const filename, frmname: string; wnd: HWND;
+      PasList: TStrings);
     procedure GeneratePasFile(const filename, frmname: string; PasList: TStrings);
     procedure GetWinInfo(wnd: HWND; ParentNode: TTreeNode);
     procedure EnableSavePas;
@@ -131,7 +132,8 @@ begin
         SendMessage(wnd, CB_GETLBTEXT, i - 1, longint(@itemtext));
         node2 := AddChild(node1, 'Item #' + IntToStr(i));
         AddChild(node2, 'Text = ' + itemtext);
-        AddChild(node2, 'Data = ' + IntToStr(SendMessage(wnd, CB_GETITEMDATA, i - 1, 0)));
+        AddChild(node2, 'Data = ' +
+          IntToStr(SendMessage(wnd, CB_GETITEMDATA, i - 1, 0)));
       end;
     end;
     if childlist.Count > 0 then
@@ -201,7 +203,8 @@ begin
 end;
 
 
-procedure TMainForm.GenerateDfmFile(const filename, frmName: string; wnd: HWND; PasList: TStrings);
+procedure TMainForm.GenerateDfmFile(const filename, frmName: string;
+  wnd: HWND; PasList: TStrings);
 var
   OutStream: TFileStream;
   b1: TDfmBuilder;
