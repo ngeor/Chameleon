@@ -52,6 +52,8 @@ type
       PasList: TStrings);
     procedure GeneratePasFile(const filename, frmname: string; PasList: TStrings);
     procedure GetWinInfo(wnd: HWND; ParentNode: TTreeNode);
+    procedure GetWinInfoStyle(wnd: HWND; ParentNode: TTreeNode);
+    procedure GetWinInfoExtendedStyle(wnd: HWND; ParentNode: TTreeNode);
     procedure EnableSavePas;
     procedure EnableWndInput;
   public
@@ -76,7 +78,6 @@ var
   node1, node2: TTreeNode;
   childlist: TList;
   EnumParams: TEnumParams;
-  style, exstyle: integer;
   parentWnd: HWND;
   itemtext: array [0..300] of char;
 begin
@@ -92,8 +93,6 @@ begin
   GetWindowRect(wnd, R1);
   Windows.GetClientRect(wnd, R2);
   GetClassName(wnd, class_name, 100);
-  style := GetWindowLong(wnd, GWL_STYLE);
-  exstyle := GetWindowLong(wnd, GWL_EXSTYLE);
   parentWnd := GetParent(wnd);
   EnumParams.List := childlist;
   EnumParams.ParentWnd := wnd;
@@ -105,17 +104,8 @@ begin
     AddChild(ParentNode, 'Caption = ' + Text);
     AddChild(ParentNode, 'Class name = ' + class_name);
     AddChild(ParentNode, 'Parent Handle = ' + IntToStr(parentWnd));
-    node1 := AddChild(ParentNode, 'Style');
-    AddChild(node1, 'Value = ' + IntToStr(style));
-    for i := Low(WindowStyle) to High(WindowStyle) do
-      if ((style and WindowStyle[i]) = WindowStyle[i]) then
-        AddChild(node1, WindowStyleName[i]);
-
-    node1 := AddChild(ParentNode, 'Extended Style');
-    AddChild(node1, 'Value = ' + IntToStr(exstyle));
-    for i := Low(WindowStyle) to High(WindowStyle) do
-      if ((style and ExtendedWindowStyle[i]) = ExtendedWindowStyle[i]) then
-        AddChild(node1, ExtendedWindowStyleName[i]);
+    GetWinInfoStyle(wnd, ParentNode);
+    GetWinInfoExtendedStyle(wnd, ParentNode);
     node1 := AddChild(ParentNode, 'Placement');
     AddChild(node1, 'Left = ' + IntToStr(R1.Left));
     AddChild(node1, 'Top = ' + IntToStr(R1.Top));
@@ -148,6 +138,50 @@ begin
   end;
   FreeMem(Text);
   childlist.Free;
+end;
+
+procedure TMainForm.GetWinInfoStyle(wnd: HWND; ParentNode: TTreeNode);
+var
+  style: Integer;
+  list: TStringList;
+  node1: TTreeNode;
+  i: Integer;
+begin
+  style := GetWindowLong(wnd, GWL_STYLE);
+  list := GetWindowStyleNames(style);
+
+  with Results.TreeView1.Items do
+  begin
+    node1 := AddChild(ParentNode, 'Style');
+    AddChild(node1, 'Value = ' + IntToStr(style));
+
+    for i := 0 to list.Count - 1 do
+      AddChild(node1, list[i]);
+  end;
+
+  list.Free();
+end;
+
+procedure TMainForm.GetWinInfoExtendedStyle(wnd: HWND; ParentNode: TTreeNode);
+var
+  style: Integer;
+  list: TStringList;
+  node1: TTreeNode;
+  i: Integer;
+begin
+  style := GetWindowLong(wnd, GWL_EXSTYLE);
+  list := GetExtendedWindowStyleNames(style);
+
+  with Results.TreeView1.Items do
+  begin
+    node1 := AddChild(ParentNode, 'Extended Style');
+    AddChild(node1, 'Value = ' + IntToStr(style));
+
+    for i := 0 to list.Count - 1 do
+      AddChild(node1, list[i]);
+  end;
+
+  list.Free();
 end;
 
 procedure TMainForm.InformationClick(Sender: TObject);

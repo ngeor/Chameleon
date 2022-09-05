@@ -1,124 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectOptions>
-    <Version Value="11" />
-    <PathDelim Value="\" />
+    <Version Value="12"/>
+    <PathDelim Value="\"/>
     <General>
       <Flags>
-        <MainUnitHasUsesSectionForAllUnits Value="False" />
-        <MainUnitHasCreateFormStatements Value="False" />
-        <MainUnitHasTitleStatement Value="False" />
+        <MainUnitHasUsesSectionForAllUnits Value="False"/>
+        <MainUnitHasCreateFormStatements Value="False"/>
+        <MainUnitHasTitleStatement Value="False"/>
+        <CompatibilityMode Value="True"/>
       </Flags>
-      <SessionStorage Value="InProjectDir" />
-      <MainUnit Value="0" />
-      <Title Value="Chameleon" />
-      <UseAppBundle Value="False" />
-      <ResourceType Value="res" />
-      <UseXPManifest Value="True" />
+      <SessionStorage Value="InProjectDir"/>
+      <Title Value="Chameleon"/>
+      <UseAppBundle Value="False"/>
+      <ResourceType Value="res"/>
+      <UseXPManifest Value="True"/>
       <XPManifest>
-        <DpiAware Value="True" />
+        <DpiAware Value="True"/>
       </XPManifest>
     </General>
     <i18n>
-      <EnableI18N LFM="False" />
+      <EnableI18N LFM="False"/>
     </i18n>
     <VersionInfo>
-      <UseVersionInfo Value="True" />
-      <AutoIncrementBuild Value="True" />
-      <RevisionNr Value="0" />
-      <BuildNr Value="2" />
-      <MajorVersionNr Value="0" />
-      <MinorVersionNr Value="1" />
+      <UseVersionInfo Value="True"/>
+      <AutoIncrementBuild Value="True"/>
+      <MinorVersionNr Value="1"/>
+      <BuildNr Value="2"/>
     </VersionInfo>
     <BuildModes Count="1">
-      <Item1 Name="Default" Default="True" />
+      <Item1 Name="Default" Default="True"/>
     </BuildModes>
     <PublishOptions>
-      <Version Value="2" />
+      <Version Value="2"/>
     </PublishOptions>
     <RunParams>
-      <FormatVersion Value="2" />
+      <FormatVersion Value="2"/>
       <Modes Count="1">
-        <Mode0 Name="default" />
+        <Mode0 Name="default"/>
       </Modes>
     </RunParams>
     <RequiredPackages Count="1">
       <Item1>
-        <PackageName Value="LCL" />
+        <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
     <Units Count="7">
       <Unit0>
-        <Filename Value="Chameleon.lpr" />
-        <IsPartOfProject Value="True" />
+        <Filename Value="Chameleon.lpr"/>
+        <IsPartOfProject Value="True"/>
       </Unit0>
       <Unit1>
-        <Filename Value="frmMain.pas" />
-        <IsPartOfProject Value="True" />
-        <ComponentName Value="MainForm" />
-        <HasResources Value="True" />
-        <ResourceBaseClass Value="Form" />
+        <Filename Value="frmMain.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="MainForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit1>
       <Unit2>
-        <Filename Value="frmResults.pas" />
-        <IsPartOfProject Value="True" />
-        <ComponentName Value="Results" />
-        <HasResources Value="True" />
-        <ResourceBaseClass Value="Form" />
+        <Filename Value="frmResults.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Results"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit2>
       <Unit3>
-        <Filename Value="Writers.pas" />
-        <IsPartOfProject Value="True" />
+        <Filename Value="Writers.pas"/>
+        <IsPartOfProject Value="True"/>
       </Unit3>
       <Unit4>
-        <Filename Value="DfmEngine.pas" />
-        <IsPartOfProject Value="True" />
+        <Filename Value="DfmEngine.pas"/>
+        <IsPartOfProject Value="True"/>
       </Unit4>
       <Unit5>
-        <Filename Value="StrConsts.pas" />
-        <IsPartOfProject Value="True" />
+        <Filename Value="StrConsts.pas"/>
+        <IsPartOfProject Value="True"/>
       </Unit5>
       <Unit6>
-        <Filename Value="about1.pas" />
-        <IsPartOfProject Value="True" />
-        <ComponentName Value="AboutBox" />
-        <HasResources Value="True" />
-        <ResourceBaseClass Value="Form" />
+        <Filename Value="about1.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="AboutBox"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit6>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
-    <Version Value="11" />
-    <PathDelim Value="\" />
+    <Version Value="11"/>
+    <PathDelim Value="\"/>
     <SearchPaths>
-      <IncludeFiles Value="$(ProjOutDir)" />
+      <IncludeFiles Value="$(ProjOutDir)"/>
     </SearchPaths>
     <Parsing>
       <SyntaxOptions>
-        <SyntaxMode Value="Delphi" />
+        <SyntaxMode Value="Delphi"/>
       </SyntaxOptions>
     </Parsing>
     <Linking>
+      <Debugging>
+        <DebugInfoType Value="dsDwarf2Set"/>
+      </Debugging>
       <Options>
         <Win32>
-          <GraphicApplication Value="True" />
+          <GraphicApplication Value="True"/>
         </Win32>
       </Options>
     </Linking>
     <Other>
-      <CustomOptions Value="-dBorland -dVer150 -dDelphi7 -dCompiler6_Up -dPUREPASCAL" />
+      <CustomOptions Value="-dBorland -dVer150 -dDelphi7 -dCompiler6_Up -dPUREPASCAL"/>
     </Other>
   </CompilerOptions>
   <Debugging>
     <Exceptions Count="3">
       <Item1>
-        <Name Value="EAbort" />
+        <Name Value="EAbort"/>
       </Item1>
       <Item2>
-        <Name Value="ECodetoolError" />
+        <Name Value="ECodetoolError"/>
       </Item2>
       <Item3>
-        <Name Value="EFOpenError" />
+        <Name Value="EFOpenError"/>
       </Item3>
     </Exceptions>
   </Debugging>

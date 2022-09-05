@@ -4,6 +4,13 @@ unit StrConsts;
 
 interface
 
+uses Classes;
+
+function GetWindowStyleNames(style: Integer): TStringList;
+function GetExtendedWindowStyleNames(style: Integer): TStringList;
+
+implementation
+
 uses Windows;
 
 const
@@ -101,6 +108,28 @@ const
     'Transparent',
     'Raised edge');
 
-implementation
+function GetWindowStyleNames(style: Integer): TStringList;
+var
+  list: TStringList;
+  i: Integer;
+begin
+  list := TStringList.Create();
+  for i := Low(WindowStyle) to High(WindowStyle) do
+    if ((style and WindowStyle[i]) = WindowStyle[i]) then
+      list.Add(WindowStyleName[i]);
+  Result := list;
+end;
+
+function GetExtendedWindowStyleNames(style: Integer): TStringList;
+var
+  list: TStringList;
+  i: Integer;
+begin
+  list := TStringList.Create();
+  for i := Low(ExtendedWindowStyle) to High(ExtendedWindowStyle) do
+    if ((style and ExtendedWindowStyle[i]) = ExtendedWindowStyle[i]) then
+      list.Add(ExtendedWindowStyleName[i]);
+  Result := list;
+end;
 
 end.

@@ -11,14 +11,13 @@ object MainForm: TMainForm
   Font.Color = clWindowText
   Font.Height = -14
   Font.Name = 'Tahoma'
-  LCLVersion = '2.0.6.0'
+  LCLVersion = '2.2.0.4'
   object lblDelayTime: TLabel
     Left = 21
     Height = 17
     Top = 11
     Width = 168
     Caption = 'Time until restoring control:'
-    ParentColor = False
   end
   object Label1: TLabel
     Left = 273
@@ -26,14 +25,12 @@ object MainForm: TMainForm
     Top = 11
     Width = 32
     Caption = 'msec'
-    ParentColor = False
   end
   object DelayTime: TSpinEdit
     Left = 206
     Height = 25
     Top = 11
     Width = 63
-    MaxValue = 0
     TabOrder = 0
     Value = 3000
   end
@@ -60,7 +57,6 @@ object MainForm: TMainForm
         Width = 78
         Caption = 'HWND value'
         Enabled = False
-        ParentColor = False
       end
       object Information: TButton
         Left = 21
@@ -114,7 +110,6 @@ object MainForm: TMainForm
         Top = 11
         Width = 81
         Caption = 'Unit file name'
-        ParentColor = False
       end
       object Label4: TLabel
         Left = 21
@@ -122,7 +117,6 @@ object MainForm: TMainForm
         Top = 80
         Width = 70
         Caption = 'Form name'
-        ParentColor = False
       end
       object PasFileName: TEdit
         Left = 21
@@ -174,7 +168,6 @@ object MainForm: TMainForm
         Top = 11
         Width = 75
         Caption = 'RC file name'
-        ParentColor = False
       end
       object RCFileName: TEdit
         Left = 21
@@ -232,7 +225,7 @@ object MainForm: TMainForm
   end
   object SaveDialog1: TSaveDialog
     Options = [ofOverwritePrompt, ofHideReadOnly]
-    left = 366
-    top = 240
+    Left = 366
+    Top = 240
   end
 end
