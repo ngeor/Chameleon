@@ -32,7 +32,7 @@ var
 
 implementation
 
-uses DfmEngine, StyleNames;
+uses StyleNames, WindowEnumerator;
 
 {$R *.lfm}
 
@@ -208,33 +208,44 @@ begin
   end;
 end;
 
+type
+  TTreeNodeChildConsumer = class
+  private
+    ParentNode: TTreeNode;
+    ChildrenRootNode: TTreeNode;
+    ChildCount: Integer;
+    Form: TResults;
+  public
+    constructor Create(Form: TResults; ParentNode: TTreeNode);
+    procedure Consume(wnd: HWND);
+  end;
+
+constructor TTreeNodeChildConsumer.Create(Form: TResults; ParentNode: TTreeNode);
+begin
+  Self.Form := Form;
+  Self.ParentNode := ParentNode;
+  Self.ChildrenRootNode := nil;
+  Self.ChildCount := 0;
+end;
+
+procedure TTreeNodeChildConsumer.Consume(wnd: HWND);
+var
+  node2: TTreeNode;
+begin
+  if not Assigned(ChildrenRootNode) then
+    ChildrenRootNode := Form.TreeView1.Items.AddChild(ParentNode, 'Children information');
+  Inc(ChildCount);
+  node2 := Form.TreeView1.Items.AddChild(ChildrenRootNode, 'Child #' + IntToStr(ChildCount));
+  Form.GetWinInfo(integer(wnd), node2);
+end;
+
 procedure TResults.GetWinInfoChildren(wnd: HWND; ParentNode: TTreeNode);
 var
-  i: integer;
-  node1, node2: TTreeNode;
-  childlist: TList;
-  EnumParams: TEnumParams;
-  class_name: String;
+  consumer: TTreeNodeChildConsumer;
 begin
-  childlist := TList.Create;
-
-  EnumParams.List := childlist;
-  EnumParams.ParentWnd := wnd;
-  EnumChildWindows(wnd, @EnumChildrenProc, integer(@EnumParams));
-
-  with TreeView1.Items do
-  begin
-    if childlist.Count > 0 then
-    begin
-      node1 := AddChild(ParentNode, 'Children information');
-      for i := 1 to childlist.Count do
-      begin
-        node2 := AddChild(node1, 'Child #' + IntToStr(i));
-        GetWinInfo(integer(childlist[i - 1]), node2);
-      end;
-    end;
-  end;
-  childlist.Free;
+  consumer := TTreeNodeChildConsumer.Create(Self, ParentNode);
+  EnumerateChildWindows(wnd, consumer.Consume);
+  consumer.Free;
 end;
 
 end.

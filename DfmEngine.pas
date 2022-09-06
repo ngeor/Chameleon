@@ -8,13 +8,6 @@ uses Windows, Messages, SysUtils, Classes, Forms, Graphics,
   Writers;
 
 type
-  PEnumParams = ^TEnumParams;
-
-  TEnumParams = record
-    List: TList;
-    ParentWnd: HWND;
-  end;
-
   TKnownControl = (
     kcUnknown, kcButton, kcCheckBox, kcComboBox, kcEdit,
     kcGroupBox, kcImage, kcLabel, kcListBox, kcListView,
@@ -66,13 +59,14 @@ const
 
 function BitTest(Value, Mask: integer): boolean;
 function GetWndText(wnd: HWND): string;
-function EnumChildrenProc(wnd: HWND; lp: LPARAM): BOOL; stdcall;
 procedure WriteBitmapData(dfm1: TDfmWriter; bmp: HBITMAP;
   BelongsToPicture: boolean; const Name: string);
 procedure WriteIconData(dfm1: TDfmWriter; icon: HICON; BelongsToPicture: boolean;
   const Name: string);
 
 implementation
+
+uses WindowEnumerator;
 
 function BitTest(Value, Mask: integer): boolean;
 begin
@@ -86,16 +80,6 @@ begin
   len := GetWindowTextLength(wnd);
   SetLength(Result, len);
   GetWindowText(wnd, PChar(Result), len + 1);
-end;
-
-function EnumChildrenProc(wnd: HWND; lp: LPARAM): BOOL; stdcall;
-var
-  p: PEnumParams;
-begin
-  p := PEnumParams(lp);
-  if GetParent(wnd) = p^.ParentWnd then
-    p^.List.Add(Pointer(wnd));
-  Result := True;
 end;
 
 function GetBorderIconsStr(ABorderIcons: TBorderIcons): string;
@@ -127,11 +111,9 @@ end;
 procedure TDfmBuilder.Build(OutStream: TStream; const frmName: string; wnd: HWND);
 var
   InStream: TMemoryStream;
-  childlist: TList;
   i: integer;
   style, exstyle: longint;
   wndX: HWND;
-  EnumParams: TEnumParams;
 
   procedure WriteBorderIcons;
   var
@@ -156,7 +138,6 @@ begin
   FillChar(Counts, sizeof(Counts), #0);
   InStream := TMemoryStream.Create;
   Dfm1 := TDfmWriter.Create(InStream);
-  childlist := TList.Create;
 
   dfm1.WriteLn('object ' + frmName + ': T' + frmName);
   style := GetWindowLong(wnd, GWL_EXSTYLE);
@@ -175,14 +156,7 @@ begin
   dfm1.WriteIntProp('TextHeight', 13);
 
   // write the children
-  EnumParams.List := childlist;
-  EnumParams.ParentWnd := wnd;
-  EnumChildWindows(wnd, @EnumChildrenProc, integer(@EnumParams));
-  for i := 0 to childlist.Count - 1 do
-  begin
-    wndX := HWND(childlist[i]);
-    PreHandleCtl(wndX);
-  end;
+  EnumerateChildWindows(wnd, Self.PreHandleCtl);
   dfm1.Ident := 0;
   dfm1.WriteLn('end');
   InStream.Position := 0;
@@ -190,29 +164,18 @@ begin
   ObjectTextToResource(InStream, OutStream);
 
   // finalization
-  childlist.Free;
   DFM1.Free;
 end;
 
 procedure TDfmBuilder.HandleUnknown(wnd: HWND; style: integer);
 var
   class_name: array [0..100] of char;
-  childlist: TList;
-  EnumParams: TEnumParams;
   i: integer;
 begin
   // since we don't know what window we're after write the class name
   GetClassName(wnd, class_name, 100);
   dfm1.WriteStringProp('Caption', class_name);
-  childlist := TList.Create;
-  EnumParams.List := childlist;
-  EnumParams.ParentWnd := wnd;
-  EnumChildWindows(wnd, @EnumChildrenProc, integer(@EnumParams));
-  for i := 0 to childlist.Count - 1 do
-  begin
-    PreHandleCtl(HWND(childlist[i]));
-  end;
-  childlist.Free;
+  EnumerateChildWindows(wnd, Self.PreHandleCtl);
 end;
 
 procedure TDfmBuilder.HandleButton(wnd: HWND; style: integer);

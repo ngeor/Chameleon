@@ -45,7 +45,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="7">
+    <Units Count="8">
       <Unit0>
         <Filename Value="Chameleon.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -83,6 +83,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit6>
+      <Unit7>
+        <Filename Value="windowenumerator.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="WindowEnumerator"/>
+      </Unit7>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
