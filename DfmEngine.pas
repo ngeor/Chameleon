@@ -159,6 +159,7 @@ begin
   childlist := TList.Create;
 
   dfm1.WriteLn('object ' + frmName + ': T' + frmName);
+  style := GetWindowLong(wnd, GWL_EXSTYLE);
   exstyle := GetWindowLong(wnd, GWL_EXSTYLE);
   dfm1.Ident := 2;
   dfm1.WritePlacement(wnd, 0);
