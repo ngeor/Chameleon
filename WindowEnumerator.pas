@@ -8,59 +8,37 @@ uses
   Windows;
 
 type
+  { An object method that accepts a HWND }
   TWndConsumer = procedure (Wnd: HWND) of object;
 
+{ Calls the given consumer for every child window of the given window }
 procedure EnumerateChildWindows(Wnd: HWND; Consumer: TWndConsumer);
 
 implementation
 
 type
-  TWindowEnumerator = class
-  private
-    FWnd: HWND;
-    FConsumer: TWndConsumer;
-    class function MyEnumChildrenProc(Wnd: HWND; Lp: LPARAM): BOOL; static; stdcall;
-    procedure Add(Wnd: HWND);
-  public
-    constructor Create(Wnd: HWND; Consumer: TWndConsumer);
-    procedure Run;
+  { Wrapper structure to hold the object procedure and pass it as a pointer }
+  PWrapper = ^TWrapper;
+  TWrapper = record
+    Consumer: TWndConsumer;
   end;
 
-procedure EnumerateChildWindows(Wnd: HWND; Consumer: TWndConsumer);
+{ Callback for Windows' EnumChildWindows }
+function MyEnumChildrenProc(Wnd: HWND; Lp: LPARAM): BOOL; stdcall;
 var
-  Enumerator: TWindowEnumerator;
+  Wrapper: PWrapper;
 begin
-  Enumerator := TWindowEnumerator.Create(Wnd, Consumer);
-  try
-    Enumerator.Run;
-  finally
-    Enumerator.Free;
-  end;
-end;
-
-constructor TWindowEnumerator.Create(Wnd: HWND; Consumer: TWndConsumer);
-begin
-  FWnd := Wnd;
-  FConsumer := Consumer;
-end;
-
-procedure TWindowEnumerator.Run;
-begin
-  EnumChildWindows(FWnd, @TWindowEnumerator.MyEnumChildrenProc, LPARAM(Self));
-end;
-
-class function TWindowEnumerator.MyEnumChildrenProc(Wnd: HWND; Lp: LPARAM): BOOL; static; stdcall;
-var
-  Me: TWindowEnumerator;
-begin
-  Me := TWindowEnumerator(Lp);
-  Me.Add(Wnd);
+  Wrapper := PWrapper(Lp);
+  Wrapper^.Consumer(Wnd);
   Result := True;
 end;
 
-procedure TWindowEnumerator.Add(Wnd: HWND);
+procedure EnumerateChildWindows(Wnd: HWND; Consumer: TWndConsumer);
+var
+  Wrapper: TWrapper;
 begin
-  FConsumer(wnd);
+  Wrapper.Consumer := Consumer;
+  EnumChildWindows(Wnd, @MyEnumChildrenProc, LPARAM(@Wrapper));
 end;
 
 end.
