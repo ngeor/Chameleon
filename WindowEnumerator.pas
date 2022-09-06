@@ -8,59 +8,59 @@ uses
   Windows;
 
 type
-  TWndConsumer = procedure (wnd: HWND) of object;
+  TWndConsumer = procedure (Wnd: HWND) of object;
 
-procedure EnumerateChildWindows(wnd: HWND; consumer: TWndConsumer);
+procedure EnumerateChildWindows(Wnd: HWND; Consumer: TWndConsumer);
 
 implementation
 
 type
   TWindowEnumerator = class
   private
-    wnd: HWND;
-    consumer: TWndConsumer;
-    class function MyEnumChildrenProc(wnd: HWND; lp: LPARAM): BOOL; static; stdcall;
-    procedure Add(wnd: HWND);
+    FWnd: HWND;
+    FConsumer: TWndConsumer;
+    class function MyEnumChildrenProc(Wnd: HWND; Lp: LPARAM): BOOL; static; stdcall;
+    procedure Add(Wnd: HWND);
   public
-    constructor Create(wnd: HWND; consumer: TWndConsumer);
+    constructor Create(Wnd: HWND; Consumer: TWndConsumer);
     procedure Run;
   end;
 
-procedure EnumerateChildWindows(wnd: HWND; consumer: TWndConsumer);
+procedure EnumerateChildWindows(Wnd: HWND; Consumer: TWndConsumer);
 var
-  enumerator: TWindowEnumerator;
+  Enumerator: TWindowEnumerator;
 begin
-  enumerator := TWindowEnumerator.Create(wnd, consumer);
+  Enumerator := TWindowEnumerator.Create(Wnd, Consumer);
   try
-    enumerator.Run;
+    Enumerator.Run;
   finally
-    enumerator.Free;
+    Enumerator.Free;
   end;
 end;
 
-constructor TWindowEnumerator.Create(wnd: HWND; consumer: TWndConsumer);
+constructor TWindowEnumerator.Create(Wnd: HWND; Consumer: TWndConsumer);
 begin
-  Self.wnd := wnd;
-  Self.consumer := consumer;
+  FWnd := Wnd;
+  FConsumer := Consumer;
 end;
 
 procedure TWindowEnumerator.Run;
 begin
-  EnumChildWindows(wnd, @TWindowEnumerator.MyEnumChildrenProc, LPARAM(Self));
+  EnumChildWindows(FWnd, @TWindowEnumerator.MyEnumChildrenProc, LPARAM(Self));
 end;
 
-class function TWindowEnumerator.MyEnumChildrenProc(wnd: HWND; lp: LPARAM): BOOL; static; stdcall;
+class function TWindowEnumerator.MyEnumChildrenProc(Wnd: HWND; Lp: LPARAM): BOOL; static; stdcall;
 var
-  me: TWindowEnumerator;
+  Me: TWindowEnumerator;
 begin
-  me := TWindowEnumerator(lp);
-  me.Add(wnd);
+  Me := TWindowEnumerator(Lp);
+  Me.Add(Wnd);
   Result := True;
 end;
 
-procedure TWindowEnumerator.Add(wnd: HWND);
+procedure TWindowEnumerator.Add(Wnd: HWND);
 begin
-  consumer(wnd);
+  FConsumer(wnd);
 end;
 
 end.
