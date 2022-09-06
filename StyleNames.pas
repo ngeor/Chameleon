@@ -1,4 +1,4 @@
-unit StrConsts;
+unit StyleNames;
 
 {$MODE Delphi}
 

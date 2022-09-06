@@ -73,7 +73,7 @@
         <IsPartOfProject Value="True"/>
       </Unit4>
       <Unit5>
-        <Filename Value="StrConsts.pas"/>
+        <Filename Value="StyleNames.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit5>
       <Unit6>

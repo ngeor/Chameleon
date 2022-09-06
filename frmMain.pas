@@ -65,7 +65,7 @@ var
 
 implementation
 
-uses frmResults, Writers, DfmEngine, StrConsts, about1;
+uses frmResults, Writers, DfmEngine, StyleNames, about1;
 
 {$R *.lfm}
 

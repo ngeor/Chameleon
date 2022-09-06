@@ -9,7 +9,7 @@ uses
   frmResults in 'frmResults.pas' {Results},
   Writers in 'Writers.pas',
   DfmEngine in 'DfmEngine.pas',
-  StrConsts in 'StrConsts.pas',
+  StyleNames in 'StyleNames.pas',
   about1 in 'about1.pas' {AboutBox};
 
 
