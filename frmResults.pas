@@ -38,7 +38,7 @@ uses StyleNames, WindowEnumerator;
 
 function GetClassNameAsString(wnd: HWND): String;
 var
-  class_name: array [0..100] of char;
+  class_name: array [0..100] of Char;
   len: Integer;
 begin
   len := GetClassName(wnd, class_name, 100);
@@ -60,11 +60,11 @@ procedure TResults.Savelistdata1Click(Sender: TObject);
 var
   f: TextFile;
   n: TTreeNode;
-  i: integer;
+  i: Integer;
 
-  function RemoveTag(const s: string): string;
+  function RemoveTag(const s: String): String;
   var
-    pos1: integer;
+    pos1: Integer;
   begin
     pos1 := Pos('=', s);
     Result := Copy(s, pos1 + 2, Length(s) - pos1 - 1);
@@ -108,7 +108,7 @@ end;
 
 procedure TResults.GetWinInfoText(wnd: HWND; ParentNode: TTreeNode);
 var
-  len: integer;
+  len: Integer;
   Text: PChar;
 begin
   len := GetWindowTextLength(wnd) + 1;
@@ -189,9 +189,9 @@ end;
 
 procedure TResults.GetWinInfoListData(wnd: HWND; ParentNode: TTreeNode);
 var
-  i, cbcount: integer;
+  i, cbcount: Integer;
   node1, node2: TTreeNode;
-  itemtext: array [0..300] of char;
+  itemtext: array [0..300] of Char;
 begin
   with TreeView1.Items do
   begin
@@ -199,11 +199,11 @@ begin
     cbcount := SendMessage(wnd, CB_GETCOUNT, 0, 0);
     for i := 1 to cbcount do
     begin
-      SendMessage(wnd, CB_GETLBTEXT, i - 1, longint(@itemtext));
+      SendMessage(wnd, CB_GETLBTEXT, i - 1, Longint(@itemtext));
       node2 := AddChild(node1, 'Item #' + IntToStr(i));
       AddChild(node2, 'Text = ' + itemtext);
-      AddChild(node2, 'Data = ' +
-        IntToStr(SendMessage(wnd, CB_GETITEMDATA, i - 1, 0)));
+      AddChild(node2, 'Data = ' + IntToStr(SendMessage(wnd,
+        CB_GETITEMDATA, i - 1, 0)));
     end;
   end;
 end;
@@ -233,10 +233,12 @@ var
   node2: TTreeNode;
 begin
   if not Assigned(ChildrenRootNode) then
-    ChildrenRootNode := Form.TreeView1.Items.AddChild(ParentNode, 'Children information');
+    ChildrenRootNode := Form.TreeView1.Items.AddChild(ParentNode,
+      'Children information');
   Inc(ChildCount);
-  node2 := Form.TreeView1.Items.AddChild(ChildrenRootNode, 'Child #' + IntToStr(ChildCount));
-  Form.GetWinInfo(integer(wnd), node2);
+  node2 := Form.TreeView1.Items.AddChild(ChildrenRootNode, 'Child #' +
+    IntToStr(ChildCount));
+  Form.GetWinInfo(Integer(wnd), node2);
 end;
 
 procedure TResults.GetWinInfoChildren(wnd: HWND; ParentNode: TTreeNode);

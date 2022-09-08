@@ -38,7 +38,7 @@ const
     WS_VISIBLE,
     WS_VSCROLL);
 
-  WindowStyleName: array [0..21] of string = (
+  WindowStyleName: array [0..21] of String = (
     'Border',
     'Caption',
     'Child',
@@ -62,7 +62,7 @@ const
     'Visible',
     'Vertical scroll bar');
 
-  ExtendedWindowStyle: array [0..20] of integer = (
+  ExtendedWindowStyle: array [0..20] of Integer = (
     WS_EX_ACCEPTFILES,
     WS_EX_APPWINDOW,
     WS_EX_CLIENTEDGE,
@@ -85,7 +85,7 @@ const
     WS_EX_TRANSPARENT,
     WS_EX_WINDOWEDGE);
 
-  ExtendedWindowStyleName: array [0..20] of string = (
+  ExtendedWindowStyleName: array [0..20] of String = (
     'Drag drop recepient',
     'Minimize on taskbar',
     'Sunken edge border',
