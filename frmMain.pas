@@ -48,9 +48,9 @@ type
     procedure btnAboutClick(Sender: TObject);
     procedure SaveRCClick(Sender: TObject);
   private
-    procedure GenerateDfmFile(const filename, frmname: string; wnd: HWND;
+    procedure GenerateDfmFile(const filename, frmname: String; wnd: HWND;
       PasList: TStrings);
-    procedure GeneratePasFile(const filename, frmname: string; PasList: TStrings);
+    procedure GeneratePasFile(const filename, frmname: String; PasList: TStrings);
     procedure EnableSavePas;
     procedure EnableWndInput;
   public
@@ -87,7 +87,7 @@ end;
 
 procedure TMainForm.BrowsePasClick(Sender: TObject);
 var
-  s: string;
+  s: String;
 begin
   with SaveDialog1 do
   begin
@@ -119,7 +119,7 @@ begin
 end;
 
 
-procedure TMainForm.GenerateDfmFile(const filename, frmName: string;
+procedure TMainForm.GenerateDfmFile(const filename, frmName: String;
   wnd: HWND; PasList: TStrings);
 var
   OutStream: TFileStream;
@@ -132,11 +132,11 @@ begin
   b1.Free;
 end;
 
-procedure TMainForm.GeneratePasFile(const filename, frmname: string; PasList: TStrings);
+procedure TMainForm.GeneratePasFile(const filename, frmname: String; PasList: TStrings);
 var
-  title: string;
+  title: String;
   fpas: TTextWriter;
-  i: integer;
+  i: Integer;
 begin
   fpas := TTextWriter.CreateFile(filename);
   try
@@ -177,7 +177,7 @@ end;
 
 procedure TMainForm.SavePasClick(Sender: TObject);
 var
-  dfmName: string;
+  dfmName: String;
   wnd: HWND;
   s: TStringList;
 begin
@@ -197,7 +197,7 @@ end;
 
 procedure TMainForm.EnableSavePas;
 var
-  UnitName: string;
+  UnitName: String;
 begin
   UnitName := ChangeFileExt(ExtractFileName(PasFileName.Text), '');
   SavePas.Enabled := IsValidIdent(FormName.Text) and IsValidIdent(UnitName) and

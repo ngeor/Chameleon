@@ -14,77 +14,77 @@ type
     kcPanel, kcRadioButton, kcStatusBar, kcTreeView
     );
   TKnownControls = set of TKnownControl;
-  TKnownControlHandlerProc = procedure(wnd: HWND; style: integer) of object;
+  TKnownControlHandlerProc = procedure(wnd: HWND; style: Integer) of object;
 
   TDfmBuilder = class
   private
     PasList: TStrings;
     dfm1: TDfmWriter;
-    Counts: array[TKnownControl] of integer;
+    Counts: array[TKnownControl] of Integer;
     CtlType: TKnownControl;
-    procedure DispatchHandle(wnd: HWND; style: integer);
-    procedure HandleUnknown(wnd: HWND; style: integer);
-    procedure HandleButton(wnd: HWND; style: integer);
-    procedure HandleCheckBox(wnd: HWND; style: integer);
-    procedure HandleComboBox(wnd: HWND; style: integer);
-    procedure HandleEdit(wnd: HWND; style: integer);
-    procedure HandleGroupBox(wnd: HWND; style: integer);
-    procedure HandleImage(wnd: HWND; style: integer);
-    procedure HandleLabel(wnd: HWND; style: integer);
-    procedure HandleListBox(wnd: HWND; style: integer);
-    procedure HandleListView(wnd: HWND; style: integer);
-    procedure HandlePanel(wnd: HWND; style: integer);
-    procedure HandleRadioButton(wnd: HWND; style: integer);
-    procedure HandleStatusBar(wnd: HWND; style: integer);
-    procedure HandleTreeView(wnd: HWND; style: integer);
+    procedure DispatchHandle(wnd: HWND; style: Integer);
+    procedure HandleUnknown(wnd: HWND; style: Integer);
+    procedure HandleButton(wnd: HWND; style: Integer);
+    procedure HandleCheckBox(wnd: HWND; style: Integer);
+    procedure HandleComboBox(wnd: HWND; style: Integer);
+    procedure HandleEdit(wnd: HWND; style: Integer);
+    procedure HandleGroupBox(wnd: HWND; style: Integer);
+    procedure HandleImage(wnd: HWND; style: Integer);
+    procedure HandleLabel(wnd: HWND; style: Integer);
+    procedure HandleListBox(wnd: HWND; style: Integer);
+    procedure HandleListView(wnd: HWND; style: Integer);
+    procedure HandlePanel(wnd: HWND; style: Integer);
+    procedure HandleRadioButton(wnd: HWND; style: Integer);
+    procedure HandleStatusBar(wnd: HWND; style: Integer);
+    procedure HandleTreeView(wnd: HWND; style: Integer);
     procedure PreHandleCtl(wnd: HWND);
     procedure WriteDecl;
   public
     constructor Create(APasList: TStrings);
-    procedure Build(OutStream: TStream; const frmName: string; wnd: HWND);
+    procedure Build(OutStream: TStream; const frmName: String; wnd: HWND);
   end;
 
 const
-  KCNames: array[TKnownControl] of string = (
+  KCNames: array[TKnownControl] of String = (
     'Unknown', 'Button', 'CheckBox', 'ComboBox', 'Edit',
     'GroupBox', 'Image', 'Label', 'ListBox', 'ListView',
     'Panel', 'RadioButton', 'StatusBar', 'TreeView'
     );
 
-  KCClassNames: array[TKnownControl] of string = (
+  KCClassNames: array[TKnownControl] of String = (
     'TPanel', 'TButton', 'TCheckBox', 'TComboBox', 'TEdit',
     'TGroupBox', 'TImage', 'TLabel', 'TListBox', 'TListView',
     'TPanel', 'TRadioButton', 'TStatusBar', 'TTreeView'
     );
 
-function BitTest(Value, Mask: integer): boolean;
-function GetWndText(wnd: HWND): string;
+function BitTest(Value, Mask: Integer): Boolean;
+function GetWndText(wnd: HWND): String;
 procedure WriteBitmapData(dfm1: TDfmWriter; bmp: HBITMAP;
-  BelongsToPicture: boolean; const Name: string);
-procedure WriteIconData(dfm1: TDfmWriter; icon: HICON; BelongsToPicture: boolean;
-  const Name: string);
+  BelongsToPicture: Boolean; const Name: String);
+procedure WriteIconData(dfm1: TDfmWriter; icon: HICON; BelongsToPicture: Boolean;
+  const Name: String);
 
 implementation
 
 uses WindowEnumerator;
 
-function BitTest(Value, Mask: integer): boolean;
+function BitTest(Value, Mask: Integer): Boolean;
 begin
   Result := (Value and Mask) = Mask;
 end;
 
-function GetWndText(wnd: HWND): string;
+function GetWndText(wnd: HWND): String;
 var
-  len: integer;
+  len: Integer;
 begin
   len := GetWindowTextLength(wnd);
   SetLength(Result, len);
   GetWindowText(wnd, PChar(Result), len + 1);
 end;
 
-function GetBorderIconsStr(ABorderIcons: TBorderIcons): string;
+function GetBorderIconsStr(ABorderIcons: TBorderIcons): String;
 const
-  biStr: array [TBorderIcon] of string = (
+  biStr: array [TBorderIcon] of String = (
     'biSystemMenu', 'biMinimize', 'biMaximize', 'biHelp');
 var
   k: TBorderIcon;
@@ -108,17 +108,17 @@ begin
   PasList := APasList;
 end;
 
-procedure TDfmBuilder.Build(OutStream: TStream; const frmName: string; wnd: HWND);
+procedure TDfmBuilder.Build(OutStream: TStream; const frmName: String; wnd: HWND);
 var
   InStream: TMemoryStream;
-  i: integer;
-  style, exstyle: longint;
+  i: Integer;
+  style, exstyle: Longint;
   wndX: HWND;
 
   procedure WriteBorderIcons;
   var
     bi: TBorderIcons;
-    s: string;
+    s: String;
   begin
     bi := [];
     if BitTest(style, WS_SYSMENU) then
@@ -167,10 +167,10 @@ begin
   DFM1.Free;
 end;
 
-procedure TDfmBuilder.HandleUnknown(wnd: HWND; style: integer);
+procedure TDfmBuilder.HandleUnknown(wnd: HWND; style: Integer);
 var
-  class_name: array [0..100] of char;
-  i: integer;
+  class_name: array [0..100] of Char;
+  i: Integer;
 begin
   // since we don't know what window we're after write the class name
   GetClassName(wnd, class_name, 100);
@@ -178,18 +178,18 @@ begin
   EnumerateChildWindows(wnd, Self.PreHandleCtl);
 end;
 
-procedure TDfmBuilder.HandleButton(wnd: HWND; style: integer);
+procedure TDfmBuilder.HandleButton(wnd: HWND; style: Integer);
 begin
   dfm1.WriteStringProp('Caption', GetWndText(wnd));
   dfm1.WriteBoolProp('Default', BitTest(style, BS_DEFPUSHBUTTON));
 end;
 
-procedure TDfmBuilder.HandleCheckBox(wnd: HWND; style: integer);
+procedure TDfmBuilder.HandleCheckBox(wnd: HWND; style: Integer);
 const
-  CheckedStr: array [0..2] of string = ('cbUnchecked', 'cbChecked', 'cbGrayed');
+  CheckedStr: array [0..2] of String = ('cbUnchecked', 'cbChecked', 'cbGrayed');
 var
-  state: integer;
-  allowgrayed: boolean;
+  state: Integer;
+  allowgrayed: Boolean;
 begin
   allowgrayed := BitTest(style, BS_3STATE) or BitTest(style, BS_AUTO3STATE);
   state := SendMessage(wnd, BM_GETCHECK, 0, 0);
@@ -198,23 +198,23 @@ begin
   dfm1.WriteCustomProp('State', CheckedStr[state]);
 end;
 
-procedure TDfmBuilder.HandleComboBox(wnd: HWND; style: integer);
+procedure TDfmBuilder.HandleComboBox(wnd: HWND; style: Integer);
 begin
 end;
 
-procedure TDfmBuilder.HandleEdit(wnd: HWND; style: integer);
+procedure TDfmBuilder.HandleEdit(wnd: HWND; style: Integer);
 begin
   dfm1.WriteStringProp('Text', GetWndText(wnd));
 end;
 
-procedure TDfmBuilder.HandleGroupBox(wnd: HWND; style: integer);
+procedure TDfmBuilder.HandleGroupBox(wnd: HWND; style: Integer);
 begin
 end;
 
-procedure TDfmBuilder.HandleImage(wnd: HWND; style: integer);
+procedure TDfmBuilder.HandleImage(wnd: HWND; style: Integer);
 var
   h: THANDLE;
-  OnlyIcon: boolean;
+  OnlyIcon: Boolean;
 begin
   OnlyIcon := BitTest(style, SS_ICON);
   if OnlyIcon then
@@ -235,43 +235,43 @@ begin
   end;
 end;
 
-procedure TDfmBuilder.HandleLabel(wnd: HWND; style: integer);
+procedure TDfmBuilder.HandleLabel(wnd: HWND; style: Integer);
 begin
   dfm1.WriteBoolProp('AutoSize', False);
   dfm1.WriteStringProp('Caption', GetWndText(wnd));
   dfm1.WriteBoolProp('WordWrap', True);
 end;
 
-procedure TDfmBuilder.HandleListBox(wnd: HWND; style: integer);
+procedure TDfmBuilder.HandleListBox(wnd: HWND; style: Integer);
 begin
 end;
 
-procedure TDfmBuilder.HandleListView(wnd: HWND; style: integer);
+procedure TDfmBuilder.HandleListView(wnd: HWND; style: Integer);
 begin
 end;
 
-procedure TDfmBuilder.HandlePanel(wnd: HWND; style: integer);
+procedure TDfmBuilder.HandlePanel(wnd: HWND; style: Integer);
 begin
 end;
 
-procedure TDfmBuilder.HandleRadioButton(wnd: HWND; style: integer);
+procedure TDfmBuilder.HandleRadioButton(wnd: HWND; style: Integer);
 begin
 end;
 
-procedure TDfmBuilder.HandleStatusBar(wnd: HWND; style: integer);
+procedure TDfmBuilder.HandleStatusBar(wnd: HWND; style: Integer);
 begin
 end;
 
-procedure TDfmBuilder.HandleTreeView(wnd: HWND; style: integer);
+procedure TDfmBuilder.HandleTreeView(wnd: HWND; style: Integer);
 begin
 end;
 
 procedure WriteBitmapData(dfm1: TDfmWriter; bmp: HBITMAP;
-  BelongsToPicture: boolean; const Name: string);
+  BelongsToPicture: Boolean; const Name: String);
 var
   b: TBitmap;
   Memory: TTextWriter;
-  Size, Offset: integer;
+  Size, Offset: Integer;
 begin
   b := TBitmap.Create;
   Memory := TTextWriter.Create(TMemoryStream.Create);
@@ -301,8 +301,8 @@ begin
   end;
 end;
 
-procedure WriteIconData(dfm1: TDfmWriter; icon: HICON; BelongsToPicture: boolean;
-  const Name: string);
+procedure WriteIconData(dfm1: TDfmWriter; icon: HICON; BelongsToPicture: Boolean;
+  const Name: String);
 var
   i: TIcon;
   k: TTextWriter;
@@ -332,7 +332,7 @@ end;
 
 procedure TDfmBuilder.WriteDecl;
 var
-  s: string;
+  s: String;
 begin
   Inc(Counts[CtlType]);
   s := KCNames[CtlType] + IntToStr(Counts[CtlType]) + ': ' + KCClassNames[CtlType];
@@ -341,7 +341,7 @@ begin
   dfm1.Ident := dfm1.Ident + 2;
 end;
 
-procedure TDfmBuilder.DispatchHandle(wnd: HWND; style: integer);
+procedure TDfmBuilder.DispatchHandle(wnd: HWND; style: Integer);
 begin
   case CtlType of
     kcUnknown: HandleUnknown(wnd, style);
@@ -363,8 +363,8 @@ end;
 
 procedure TDfmBuilder.PreHandleCtl(wnd: HWND);
 var
-  class_name: array [0..100] of char;
-  style: integer;
+  class_name: array [0..100] of Char;
+  style: Integer;
 begin
   GetClassName(wnd, class_name, 100);
   style := GetWindowLong(wnd, GWL_STYLE);
